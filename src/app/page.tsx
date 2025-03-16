@@ -1,103 +1,55 @@
-import Image from "next/image";
+import Animation from '@/component/Animation'
+import Image from 'next/image'
+import React from 'react'
+import zerlla from "@/asset/zerlla.png"
 
-export default function Home() {
+const Page = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className=' bg-white h-screen flex justify-center  font-[poppins-regular] md:p-0 p-8'>
+     <div className='flex h-full flex-col justify-between gap-4 py-3 md:w-[60%] w-full'>
+      <Image src={zerlla} alt='Logo' className=' w-[4.5rem] mx-auto md:mt-4' />
+       {/* Header */}
+       <div className=' md:mt-4'>
+        <p className=' text-3xl text-[#000000] text-center font-bold'>WE ARE COMING SOON</p>
+        <p className=' text-[1rem]  font text-[#8e8e8e] text-center'>Stay tuned for something amazing</p>
+      </div>
+      {/* Animation */}
+      <div className=' flex justify-center'>
+        <Animation />
+      </div>
+      {/* Mailing */}
+      <div className=' flex flex-col gap-4'>
+      <p className=' text-[1rem] text-center'>Join the waitlist to be part of the first persons to use our products</p>
+      <div className=' h-12 flex relative'>
+        <input type="email" name="email" id="email" placeholder='Email' className=' h-full w-full pl-2 py-1 border-1 rounded-md border-r-0 border-[#000]'/>
+        
+        <button className=' absolute right-0 h-full cursor-pointer hover:bg-[#412525] bg-[#FF5C40] rounded-4 px-6 text-[#fff] rounded-r-md'>Subscribe</button>
+      </div>
+      {/* Socials */}
+      <div className=" flex justify-center">
+        {/* Icons */}
+        <div className=' flex justify-between mx-auto gap-6 '>
+          <img src="https://icons.veryicon.com/png/o/miscellaneous/template-4/twitter-165.png" className=' md:w-10 md:h-10 w-6 h-6' alt="twitter" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6OOgcf2t_T9yp_Dn-X9lPp2e_s1q7sCnwo_4Y4cDrzf_fNwCDGs6h-uV9TyJmtcZ-tWU&usqp=CAU" className=' md:w-10 md:h-10 w-6 h-6' alt="facebook" />
+          <img src="https://images.icon-icons.com/2428/PNG/512/linkedin_black_logo_icon_147114.png" className=' md:w-10 md:h-10 w-6 h-6' alt="linkedin" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/CIS-A2K_Instagram_Icon_%28Black%29.svg/2048px-CIS-A2K_Instagram_Icon_%28Black%29.svg.png" className=' md:w-10 md:h-10 w-6 h-6' alt="instagram" />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      </div>
+      {/* Footer */}
+      <div className=' flex justify-center'>
+        <span className=' flex gap-2'>
+          <p className=' text-[#8e8e8e] text-[14px]'>Copyrights Zerlla LTD</p>
+          <p className=' text-[#8e8e8e] text-[14px]'>{" | "}</p>
+          <p className=' text-[#8e8e8e] text-[14px]'>All Rights Reserved</p>
+        </span>
+      </div>
+     </div>
     </div>
-  );
+  )
 }
+
+export default Page
