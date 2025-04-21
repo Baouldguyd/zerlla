@@ -1,9 +1,48 @@
+"use client";
 import Animation from "@/component/Animation";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import zerlla from "@/asset/zerlla.png";
+import { endpoints } from "@/store/endpoints";
+import { toast } from "sonner";
+import "./loader.css"
 
 const Page = () => {
+  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  const handleSubmit = async (e: any) => {
+    setIsSubmitting(!isSubmitting)
+    // Prevent the default form submission behavior
+    e.preventDefault();
+    const response = await fetch(
+      `${endpoints.baseURl}${endpoints.saveSubscribers.url}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: username,
+          email: email,
+        }),
+      }
+    );
+
+    const data = await response.json();
+    toast.success(data.responseMessage);	
+    console.log(data);
+    console.log(data.responseMessage);
+    if(!data) {
+      toast.error("Something went wrong")	
+    }
+    // Reset the form fields
+    setUsername("");
+    setEmail("");
+    setIsSubmitting(false);
+  };
+
   return (
     <div className=" bg-white h-screen flex justify-center  font-[poppins-regular] md:p-0 p-8">
       <div className="flex h-full flex-col justify-between gap-4 py-3 md:w-[60%] w-full">
@@ -31,9 +70,7 @@ const Page = () => {
             Join the waitlist to be part of the first persons to use our
             products
           </p>
-          <form
-                    
-          >
+          <form onSubmit={handleSubmit}>
             <div className=" md:h-12 flex relative gap-4 md:flex-row flex-col h-auto ">
               <input
                 type="text"
@@ -41,6 +78,9 @@ const Page = () => {
                 id="name"
                 placeholder="Name"
                 className=" h-full w-full pl-2 py-3 md:py-1 border-1 rounded-md border-[#000]"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+                required
               />
 
               <input
@@ -49,13 +89,17 @@ const Page = () => {
                 id="email"
                 placeholder="Email"
                 className=" h-full w-full pl-2 py-3 md:py-1 border-1 rounded-md border-[#000]"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                required
               />
 
               <button
+                disabled={!username || !email || isSubmitting}
                 type="submit"
                 className="  h-full cursor-pointer hover:bg-[#412525] bg-[#FF5C40] rounded-4 py-3 md:py-0 px-6 text-[#fff] rounded-md"
               >
-                Subscribe
+                 {isSubmitting ? (<div className="loader"></div>): "Subscribe"}
               </button>
             </div>
           </form>
